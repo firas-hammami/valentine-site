@@ -1,141 +1,78 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Happy Valentine's Day ❤️</title>
-    <link rel="stylesheet" href="style.css" />
-    <style>
-      body {
-        text-align: center;
-        font-family: sans-serif;
-        background: #fff0f5;
-      }
-      .love-container {
-        max-width: 700px;
-        margin: auto;
-        padding: 20px;
-      }
-      #proposal {
-        margin-top: 20px;
-      }
-      #yesBtn {
-        font-size: 20px;
-        padding: 10px 20px;
-      }
-      #oopsBtn {
-        font-size: 16px;
-        padding: 8px 16px;
-        position: relative;
-      }
-      .heart {
-        position: fixed;
-        font-size: 24px;
-        animation: float 4s linear;
-        pointer-events: none;
-      }
-      @keyframes float {
-        0% {
-          bottom: -50px;
-          opacity: 1;
-        }
-        100% {
-          bottom: 100vh;
-          opacity: 0;
-        }
-      }
-      img {
-        width: 150px;
-        margin: 10px;
-        border-radius: 12px;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="love-container">
-      <h1>Happy Valentine’s Day ❤️</h1>
+<head>
+  <title>Will You Be My Valentine? ❤️</title>
+  <style>
+    body { text-align: center; font-family: sans-serif; background: #fff0f5; }
+    .love-container { max-width: 700px; margin: auto; padding: 20px; }
+    #proposal { margin-top: 20px; }
+    #yesBtn { font-size: 20px; padding: 10px 20px; }
+    #oopsBtn { font-size: 16px; padding: 8px 16px; position: relative; }
+    .heart { position: fixed; font-size: 24px; animation: float 4s linear; pointer-events: none; }
+    @keyframes float { 0% { bottom: -50px; opacity: 1; } 100% { bottom: 100vh; opacity: 0; } }
+  </style>
+</head>
+<body>
 
-      <p>
-        You have no idea how happy you make me.<br />
-        Every single day with you is my favorite day.
+  <div class="love-container">
+    <h1>Happy Valentine’s Day ❤️</h1>
+
+    <p>
+      This is my special surprise for you 💕
+    </p>
+
+    <!-- Click to Start Music & Proposal -->
+    <button onclick="startLove()">Click Me 💌</button>
+
+    <!-- Hidden Proposal Section -->
+    <div id="proposal" style="display:none;">
+      <h2>Will you be my Valentine forever? 🥹❤️</h2>
+      <button id="yesBtn" onclick="growYes()">YES ❤️</button>
+      <button id="oopsBtn" onmouseover="moveButton()">Oops 😜</button>
+      <p id="oopsText" style="display:none; font-weight:bold; color:#c9184a; margin-top:10px;">
+        Oops… you just fell even more in love with me 😌💕
       </p>
-
-      <p>
-        I’m so lucky to call you mine 💕<br />
-        And I wouldn’t trade you for the world.
-      </p>
-
-      <!-- Images (all 9 in root folder) -->
-      <div class="images">
-        <img src="pic1.jpg" alt="Photo 1" />
-        <img src="pic2.jpg" alt="Photo 2" />
-        <img src="pic3.jpg" alt="Photo 3" />
-        <img src="pic4.jpg" alt="Photo 4" />
-        <img src="pic5.jpg" alt="Photo 5" />
-        <img src="pic6.jpg" alt="Photo 6" />
-        <img src="pic7.jpg" alt="Photo 7" />
-        <img src="pic8.jpg" alt="Photo 8" />
-        <img src="pic9.jpg" alt="Photo 9" />
-      </div>
-
-      <!-- Click to Start Music & Proposal -->
-      <button onclick="startLove()">Click Me 💌</button>
-
-      <!-- Hidden Proposal Section -->
-      <div id="proposal" style="display: none">
-        <h2>Will you be my Valentine forever? 🥹❤️</h2>
-        <button id="yesBtn" onclick="growYes()">YES ❤️</button>
-        <button id="oopsBtn" onmouseover="moveButton()">Oops 😜</button>
-        <p
-          id="oopsText"
-          style="
-            display: none;
-            font-weight: bold;
-            color: #c9184a;
-            margin-top: 10px;
-          "
-        >
-          Oops… you just fell even more in love with me 😌💕
-        </p>
-      </div>
-
-      <!-- Audio Element -->
-      <audio id="loveSong" src="taylor.mp3" loop></audio>
     </div>
 
-    <script>
-      // Start music + show proposal
-      function startLove() {
-        document.getElementById("loveSong").play();
-        document.getElementById("proposal").style.display = "block";
-      }
+    <!-- Audio Element -->
+    <audio id="loveSong" src="taylor.mp3" loop></audio>
+  </div>
 
-      // YES button grows
-      let size = 1;
-      function growYes() {
-        size += 0.3;
-        document.getElementById("yesBtn").style.transform =
-          "scale(" + size + ")";
-      }
+  <script>
+    // Start music + show proposal
+    function startLove() {
+      document.getElementById("loveSong").play();
+      document.getElementById("proposal").style.display = "block";
+    }
 
-      // Oops button runs away
-      function moveButton() {
-        const btn = document.getElementById("oopsBtn");
-        btn.style.position = "absolute";
-        btn.style.top = Math.random() * 80 + "vh";
-        btn.style.left = Math.random() * 80 + "vw";
-        document.getElementById("oopsText").style.display = "block";
-      }
+    // YES button grows
+    let size = 1;
+    function growYes() {
+      size += 0.3;
+      document.getElementById("yesBtn").style.transform = "scale(" + size + ")";
+    }
 
-      // Floating hearts
-      function createHeart() {
-        const heart = document.createElement("div");
-        heart.classList.add("heart");
-        heart.innerText = "💖";
-        heart.style.left = Math.random() * 100 + "vw";
-        heart.style.animationDuration = Math.random() * 3 + 2 + "s";
-        document.body.appendChild(heart);
-        setTimeout(() => heart.remove(), 5000);
-      }
-      setInterval(createHeart, 300);
-    </script>
-  </body>
+    // Oops button moves randomly
+    function moveButton() {
+      const btn = document.getElementById("oopsBtn");
+      btn.style.position = "absolute";
+      btn.style.top = Math.random() * 80 + "vh";
+      btn.style.left = Math.random() * 80 + "vw";
+      document.getElementById("oopsText").style.display = "block";
+    }
+
+    // Floating hearts
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.innerText = "💖";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = (Math.random() * 3 + 2) + "s";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 5000);
+    }
+    setInterval(createHeart, 300);
+  </script>
+
+</body>
 </html>
