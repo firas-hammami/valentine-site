@@ -1,115 +1,63 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Happy Valentine's Day ❤️</title>
-  <style>
-    body { 
-      text-align: center; 
-      font-family: sans-serif; 
-      background: #fff0f5; 
-      margin: 0; 
-      padding: 0; 
-    }
-    .love-container { 
-      max-width: 700px; 
-      margin: auto; 
-      padding: 20px; 
-    }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(3, 150px);
-      grid-gap: 10px;
-      justify-content: center;
-      margin-top: 20px;
-    }
-    .grid img {
-      width: 150px;
-      height: 150px;
-      object-fit: cover;
-      border: 2px solid #ccc;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: all 0.5s ease;
-      position: relative;
-    }
-    .grid img.clicked {
-      opacity: 0.5;
-      transform: scale(0.95);
-      border-color: #4caf50;
-      box-shadow: 0 0 10px #4caf50;
-    }
-    .heart { 
-      position: fixed; 
-      font-size: 24px; 
-      animation: float 4s linear; 
-      pointer-events: none; 
-    }
-    @keyframes float { 
-      0% { bottom: -50px; opacity: 1; } 
-      100% { bottom: 100vh; opacity: 0; } 
-    }
-    button {
-      font-size: 20px;
-      padding: 10px 20px;
-      margin-top: 20px;
-      display: none; /* only show after all photos clicked */
-    }
-  </style>
-</head>
-<body>
+  <head>
+    <title>Security Check 💘</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body class="page1">
+    <div class="card">
+      <h2>Select all images with</h2>
+      <h1>your valentine 💕</h1>
+      <p>Click verify once there are none left.</p>
 
-  <div class="love-container">
-    <h1>Happy Valentine’s Day ❤️</h1>
-    <p>Click on all the photos 💕</p>
+      <div class="grid">
+        <img src="pic1.jpg" onclick="removeImage(this)" />
+        <img src="pic2.jpg" onclick="removeImage(this)" />
+        <img src="pic3.jpg" onclick="removeImage(this)" />
+        <img src="pic4.jpg" onclick="removeImage(this)" />
+        <img src="pic5.jpg" onclick="removeImage(this)" />
+        <img src="photos/pic6.jpg" onclick="removeImage(this)" />
+        <img src="photos/pic7.jpg" onclick="removeImage(this)" />
+        <img src="photos/pic8.jpg" onclick="removeImage(this)" />
+        <img src="photos/pic9.jpg" onclick="removeImage(this)" />
+      </div>
 
-    <!-- 9 Photos in a grid -->
-    <div class="grid">
-      <img src="pic1.jpg" alt="Photo 1" onclick="clickPhoto(this)">
-      <img src="pic2.jpg" alt="Photo 2" onclick="clickPhoto(this)">
-      <img src="pic3.jpg" alt="Photo 3" onclick="clickPhoto(this)">
-      <img src="pic4.jpg" alt="Photo 4" onclick="clickPhoto(this)">
-      <img src="pic5.jpg" alt="Photo 5" onclick="clickPhoto(this)">
-      <img src="pic6.jpg" alt="Photo 6" onclick="clickPhoto(this)">
-      <img src="pic7.jpg" alt="Photo 7" onclick="clickPhoto(this)">
-      <img src="pic8.jpg" alt="Photo 8" onclick="clickPhoto(this)">
-      <img src="pic9.jpg" alt="Photo 9" onclick="clickPhoto(this)">
+      <button onclick="verify()">VERIFY ❤️</button>
     </div>
 
-    <!-- Button to go to surprise page -->
-    <button id="goSurprise" onclick="goToSurprise()">Click Me 💌</button>
-  </div>
-
-  <script>
-    // Floating hearts
-    function createHeart() {
-      const heart = document.createElement("div");
-      heart.classList.add("heart");
-      heart.innerText = "💖";
-      heart.style.left = Math.random() * 100 + "vw";
-      heart.style.animationDuration = (Math.random() * 3 + 2) + "s";
-      document.body.appendChild(heart);
-      setTimeout(() => heart.remove(), 5000);
-    }
-    setInterval(createHeart, 300);
-
-    // Handle photo clicks
-    let clickedCount = 0;
-    function clickPhoto(photo) {
-      if (!photo.classList.contains('clicked')) {
-        photo.classList.add('clicked');
-        clickedCount++;
+    <script>
+      function removeImage(img) {
+        img.style.visibility = "hidden";
       }
-      if (clickedCount === 9) {
-        // All photos clicked, show button
-        document.getElementById('goSurprise').style.display = 'inline-block';
+
+      function verify() {
+        const images = document.querySelectorAll(".grid img");
+        let allHidden = true;
+
+        images.forEach((img) => {
+          if (img.style.visibility !== "hidden") {
+            allHidden = false;
+          }
+        });
+
+        if (allHidden) {
+          window.location.href = "surprise.html";
+        } else {
+          alert("Oops… you missed your valentine 😜");
+        }
       }
-    }
 
-    // Go to surprise page
-    function goToSurprise() {
-      window.location.href = "surprise.html";
-    }
-  </script>
+      function createHeart() {
+        const heart = document.createElement("div");
+        heart.classList.add("heart");
+        heart.innerText = "💖";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = Math.random() * 3 + 2 + "s";
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 5000);
+      }
 
-</body>
+      setInterval(createHeart, 300);
+    </script>
+  </body>
 </html>
