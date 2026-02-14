@@ -15,10 +15,28 @@
       margin: auto; 
       padding: 20px; 
     }
-    .images img { 
-      width: 150px; 
-      margin: 10px; 
-      border-radius: 12px; 
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 150px);
+      grid-gap: 10px;
+      justify-content: center;
+      margin-top: 20px;
+    }
+    .grid img {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      border: 2px solid #ccc;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.5s ease;
+      position: relative;
+    }
+    .grid img.clicked {
+      opacity: 0.5;
+      transform: scale(0.95);
+      border-color: #4caf50;
+      box-shadow: 0 0 10px #4caf50;
     }
     .heart { 
       position: fixed; 
@@ -30,32 +48,35 @@
       0% { bottom: -50px; opacity: 1; } 
       100% { bottom: 100vh; opacity: 0; } 
     }
+    button {
+      font-size: 20px;
+      padding: 10px 20px;
+      margin-top: 20px;
+      display: none; /* only show after all photos clicked */
+    }
   </style>
 </head>
 <body>
 
   <div class="love-container">
     <h1>Happy Valentine’s Day ❤️</h1>
+    <p>Click on all the photos 💕</p>
 
-    <p>Some of my favorite moments with you 💕</p>
-
-    <!-- 9 Photos in the root folder -->
-    <div class="images">
-      <img src="pic1.jpg" alt="Photo 1">
-      <img src="pic2.jpg" alt="Photo 2">
-      <img src="pic3.jpg" alt="Photo 3">
-      <img src="pic4.jpg" alt="Photo 4">
-      <img src="pic5.jpg" alt="Photo 5">
-      <img src="pic6.jpg" alt="Photo 6">
-      <img src="pic7.jpg" alt="Photo 7">
-      <img src="pic8.jpg" alt="Photo 8">
-      <img src="pic9.jpg" alt="Photo 9">
+    <!-- 9 Photos in a grid -->
+    <div class="grid">
+      <img src="pic1.jpg" alt="Photo 1" onclick="clickPhoto(this)">
+      <img src="pic2.jpg" alt="Photo 2" onclick="clickPhoto(this)">
+      <img src="pic3.jpg" alt="Photo 3" onclick="clickPhoto(this)">
+      <img src="pic4.jpg" alt="Photo 4" onclick="clickPhoto(this)">
+      <img src="pic5.jpg" alt="Photo 5" onclick="clickPhoto(this)">
+      <img src="pic6.jpg" alt="Photo 6" onclick="clickPhoto(this)">
+      <img src="pic7.jpg" alt="Photo 7" onclick="clickPhoto(this)">
+      <img src="pic8.jpg" alt="Photo 8" onclick="clickPhoto(this)">
+      <img src="pic9.jpg" alt="Photo 9" onclick="clickPhoto(this)">
     </div>
 
     <!-- Button to go to surprise page -->
-    <button onclick="goToSurprise()" style="font-size:20px; padding:10px 20px; margin-top:20px;">
-      Click Me 💌
-    </button>
+    <button id="goSurprise" onclick="goToSurprise()">Click Me 💌</button>
   </div>
 
   <script>
@@ -70,6 +91,19 @@
       setTimeout(() => heart.remove(), 5000);
     }
     setInterval(createHeart, 300);
+
+    // Handle photo clicks
+    let clickedCount = 0;
+    function clickPhoto(photo) {
+      if (!photo.classList.contains('clicked')) {
+        photo.classList.add('clicked');
+        clickedCount++;
+      }
+      if (clickedCount === 9) {
+        // All photos clicked, show button
+        document.getElementById('goSurprise').style.display = 'inline-block';
+      }
+    }
 
     // Go to surprise page
     function goToSurprise() {
