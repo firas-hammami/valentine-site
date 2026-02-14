@@ -1,34 +1,35 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Will You Be My Valentine? ❤️</title>
-  <style>
-    body { text-align: center; font-family: sans-serif; background: #fff0f5; }
-    .love-container { max-width: 700px; margin: auto; padding: 20px; }
-    #proposal { margin-top: 20px; }
-    #yesBtn { font-size: 20px; padding: 10px 20px; }
-    #oopsBtn { font-size: 16px; padding: 8px 16px; position: relative; }
-    .heart { position: fixed; font-size: 24px; animation: float 4s linear; pointer-events: none; }
-    @keyframes float { 0% { bottom: -50px; opacity: 1; } 100% { bottom: 100vh; opacity: 0; } }
-  </style>
+  <title>Happy Valentine's Day ❤️</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="page2">
 
   <div class="love-container">
     <h1>Happy Valentine’s Day ❤️</h1>
 
     <p>
-      This is my special surprise for you 💕
+      You have no idea how happy you make me.<br>
+      Every single day with you is my favorite day.
+    </p>
+
+    <p>
+      I’m so lucky to call you mine 💕<br>
+      And I wouldn’t trade you for the world.
     </p>
 
     <!-- Click to Start Music & Proposal -->
     <button onclick="startLove()">Click Me 💌</button>
 
     <!-- Hidden Proposal Section -->
-    <div id="proposal" style="display:none;">
+    <div id="proposal" style="display:none; margin-top:20px;">
       <h2>Will you be my Valentine forever? 🥹❤️</h2>
+
       <button id="yesBtn" onclick="growYes()">YES ❤️</button>
+
       <button id="oopsBtn" onmouseover="moveButton()">Oops 😜</button>
+
       <p id="oopsText" style="display:none; font-weight:bold; color:#c9184a; margin-top:10px;">
         Oops… you just fell even more in love with me 😌💕
       </p>
@@ -39,7 +40,7 @@
   </div>
 
   <script>
-    // Start music + show proposal
+    // Start Music + Show Proposal
     function startLove() {
       document.getElementById("loveSong").play();
       document.getElementById("proposal").style.display = "block";
@@ -49,10 +50,11 @@
     let size = 1;
     function growYes() {
       size += 0.3;
-      document.getElementById("yesBtn").style.transform = "scale(" + size + ")";
+      const btn = document.getElementById("yesBtn");
+      btn.style.transform = "scale(" + size + ")";
     }
 
-    // Oops button moves randomly
+    // Oops button runs away
     function moveButton() {
       const btn = document.getElementById("oopsBtn");
       btn.style.position = "absolute";
@@ -61,7 +63,7 @@
       document.getElementById("oopsText").style.display = "block";
     }
 
-    // Floating hearts
+    // Floating Hearts
     function createHeart() {
       const heart = document.createElement("div");
       heart.classList.add("heart");
@@ -71,6 +73,7 @@
       document.body.appendChild(heart);
       setTimeout(() => heart.remove(), 5000);
     }
+
     setInterval(createHeart, 300);
   </script>
 
