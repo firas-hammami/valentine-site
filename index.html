@@ -1,63 +1,66 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Security Check 💘</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body class="page1">
-    <div class="card">
-      <h2>Select all images with</h2>
-      <h1>your valentine 💕</h1>
-      <p>Click verify once there are none left.</p>
+<head>
+  <title>Happy Valentine's Day ❤️</title>
+  <style>
+    body { text-align: center; font-family: sans-serif; background: #fff0f5; }
+    .love-container { max-width: 700px; margin: auto; padding: 20px; }
+    button { font-size: 20px; padding: 10px 20px; margin-top: 20px; }
+    .images img { width: 150px; margin: 10px; border-radius: 12px; }
+    .heart { position: fixed; font-size: 24px; animation: float 4s linear; pointer-events: none; }
+    @keyframes float { 0% { bottom: -50px; opacity: 1; } 100% { bottom: 100vh; opacity: 0; } }
+  </style>
+</head>
+<body>
 
-      <div class="grid">
-        <img src="photos/pic1.jpg" onclick="removeImage(this)" />
-        <img src="photos/pic2.jpg" onclick="removeImage(this)" />
-        <img src="photos/pic3.jpg" onclick="removeImage(this)" />
-        <img src="photos/pic4.jpg" onclick="removeImage(this)" />
-        <img src="photos/pic5.jpg" onclick="removeImage(this)" />
-        <img src="photos/pic6.jpg" onclick="removeImage(this)" />
-        <img src="photos/pic7.jpg" onclick="removeImage(this)" />
-        <img src="photos/pic8.jpg" onclick="removeImage(this)" />
-        <img src="photos/pic9.jpg" onclick="removeImage(this)" />
-      </div>
+  <div class="love-container">
+    <h1>Happy Valentine’s Day ❤️</h1>
 
-      <button onclick="verify()">VERIFY ❤️</button>
+    <p>
+      You have no idea how happy you make me.<br>
+      Every single day with you is my favorite day.
+    </p>
+
+    <p>
+      I’m so lucky to call you mine 💕<br>
+      And I wouldn’t trade you for the world.
+    </p>
+
+    <!-- 9 Photos -->
+    <div class="images">
+      <img src="pic1.jpg" alt="Photo 1">
+      <img src="pic2.jpg" alt="Photo 2">
+      <img src="pic3.jpg" alt="Photo 3">
+      <img src="pic4.jpg" alt="Photo 4">
+      <img src="pic5.jpg" alt="Photo 5">
+      <img src="pic6.jpg" alt="Photo 6">
+      <img src="pic7.jpg" alt="Photo 7">
+      <img src="pic8.jpg" alt="Photo 8">
+      <img src="pic9.jpg" alt="Photo 9">
     </div>
 
-    <script>
-      function removeImage(img) {
-        img.style.visibility = "hidden";
-      }
+    <!-- Button to go to surprise page -->
+    <button onclick="goToSurprise()">Go to Surprise 💌</button>
+  </div>
 
-      function verify() {
-        const images = document.querySelectorAll(".grid img");
-        let allHidden = true;
+  <script>
+    // Floating hearts
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.innerText = "💖";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = (Math.random() * 3 + 2) + "s";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 5000);
+    }
+    setInterval(createHeart, 300);
 
-        images.forEach((img) => {
-          if (img.style.visibility !== "hidden") {
-            allHidden = false;
-          }
-        });
+    // Go to surprise page
+    function goToSurprise() {
+      window.location.href = "surprise.html";
+    }
+  </script>
 
-        if (allHidden) {
-          window.location.href = "surprise.html";
-        } else {
-          alert("Oops… you missed your valentine 😜");
-        }
-      }
-
-      function createHeart() {
-        const heart = document.createElement("div");
-        heart.classList.add("heart");
-        heart.innerText = "💖";
-        heart.style.left = Math.random() * 100 + "vw";
-        heart.style.animationDuration = Math.random() * 3 + 2 + "s";
-        document.body.appendChild(heart);
-        setTimeout(() => heart.remove(), 5000);
-      }
-
-      setInterval(createHeart, 300);
-    </script>
-  </body>
+</body>
 </html>
