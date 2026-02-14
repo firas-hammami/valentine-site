@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Security Check 💘</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body class="page1">
+    <div class="card">
+      <h2>Select all images with</h2>
+      <h1>your valentine 💕</h1>
+      <p>Click verify once there are none left.</p>
+
+      <div class="grid">
+        <img src="photos/pic1.jpg" onclick="removeImage(this)" />
+        <img src="photos/pic2.jpg" onclick="removeImage(this)" />
+        <img src="photos/pic3.jpg" onclick="removeImage(this)" />
+        <img src="photos/pic4.jpg" onclick="removeImage(this)" />
+        <img src="photos/pic5.jpg" onclick="removeImage(this)" />
+        <img src="photos/pic6.jpg" onclick="removeImage(this)" />
+        <img src="photos/pic7.jpg" onclick="removeImage(this)" />
+        <img src="photos/pic8.jpg" onclick="removeImage(this)" />
+        <img src="photos/pic9.jpg" onclick="removeImage(this)" />
+      </div>
+
+      <button onclick="verify()">VERIFY ❤️</button>
+    </div>
+
+    <script>
+      function removeImage(img) {
+        img.style.visibility = "hidden";
+      }
+
+      function verify() {
+        const images = document.querySelectorAll(".grid img");
+        let allHidden = true;
+
+        images.forEach((img) => {
+          if (img.style.visibility !== "hidden") {
+            allHidden = false;
+          }
+        });
+
+        if (allHidden) {
+          window.location.href = "surprise.html";
+        } else {
+          alert("Oops… you missed your valentine 😜");
+        }
+      }
+
+      function createHeart() {
+        const heart = document.createElement("div");
+        heart.classList.add("heart");
+        heart.innerText = "💖";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = Math.random() * 3 + 2 + "s";
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 5000);
+      }
+
+      setInterval(createHeart, 300);
+    </script>
+  </body>
+</html>

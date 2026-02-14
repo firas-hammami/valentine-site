@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Happy Valentine's Day ❤️</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body class="page2">
+    <div class="love-container">
+      <h1>Happy Valentine’s Day ❤️</h1>
+
+      <p>
+        You have no idea how happy you make me.<br />
+        Every single day with you is my favorite day.
+      </p>
+
+      <p>
+        I’m so lucky to call you mine 💕<br />
+        And I wouldn’t trade you for the world.
+      </p>
+
+      <!-- Click to Start Music & Proposal -->
+      <button onclick="startLove()">Click Me 💌</button>
+
+      <!-- Hidden Proposal Section -->
+      <div id="proposal" style="display: none; margin-top: 20px">
+        <h2>Will you be my Valentine forever? 🥹❤️</h2>
+
+        <button id="yesBtn" onclick="growYes()">YES ❤️</button>
+
+        <button id="oopsBtn" onmouseover="moveButton()">Oops 😜</button>
+
+        <p
+          id="oopsText"
+          style="
+            display: none;
+            font-weight: bold;
+            color: #c9184a;
+            margin-top: 10px;
+          "
+        >
+          Oops… you just fell even more in love with me 😌💕
+        </p>
+      </div>
+
+      <!-- Audio Element -->
+      <audio id="loveSong" src="taylor.mp3" loop></audio>
+    </div>
+
+    <script>
+      // Start Music + Show Proposal
+      function startLove() {
+        document.getElementById("loveSong").play();
+        document.getElementById("proposal").style.display = "block";
+      }
+
+      // YES button grows
+      let size = 1;
+      function growYes() {
+        size += 0.3;
+        const btn = document.getElementById("yesBtn");
+        btn.style.transform = "scale(" + size + ")";
+      }
+
+      // Oops button runs away
+      function moveButton() {
+        const btn = document.getElementById("oopsBtn");
+        btn.style.position = "absolute";
+        btn.style.top = Math.random() * 80 + "vh";
+        btn.style.left = Math.random() * 80 + "vw";
+        document.getElementById("oopsText").style.display = "block";
+      }
+
+      // Floating Hearts
+      function createHeart() {
+        const heart = document.createElement("div");
+        heart.classList.add("heart");
+        heart.innerText = "💖";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = Math.random() * 3 + 2 + "s";
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 5000);
+      }
+
+      setInterval(createHeart, 300);
+    </script>
+  </body>
+</html>
