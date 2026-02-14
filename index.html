@@ -3,12 +3,57 @@
   <head>
     <title>Security Check 💘</title>
     <link rel="stylesheet" href="style.css" />
+    <style>
+      body.page1 { 
+        text-align: center; 
+        font-family: sans-serif; 
+        background: #fff0f5; 
+        margin: 0; 
+        padding: 0; 
+      }
+      .card {
+        max-width: 700px; 
+        margin: auto; 
+        padding: 20px; 
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(3, 150px);
+        grid-gap: 10px;
+        justify-content: center;
+        margin-top: 20px;
+      }
+      .grid img {
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+        border: 2px solid #ccc;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+      .heart { 
+        position: fixed; 
+        font-size: 24px; 
+        animation: float 4s linear; 
+        pointer-events: none; 
+      }
+      @keyframes float { 
+        0% { bottom: -50px; opacity: 1; } 
+        100% { bottom: 100vh; opacity: 0; } 
+      }
+      button {
+        font-size: 20px;
+        padding: 10px 20px;
+        margin-top: 20px;
+      }
+    </style>
   </head>
   <body class="page1">
     <div class="card">
       <h2>Select all images with</h2>
       <h1>your valentine 💕</h1>
-      <p>Click verify once there are none left.</p>
+      <p>Click VERIFY once there are none left.</p>
 
       <div class="grid">
         <img src="pic1.jpg" onclick="removeImage(this)" />
@@ -16,20 +61,22 @@
         <img src="pic3.jpg" onclick="removeImage(this)" />
         <img src="pic4.jpg" onclick="removeImage(this)" />
         <img src="pic5.jpg" onclick="removeImage(this)" />
-        <img src="photos/pic6.jpg" onclick="removeImage(this)" />
-        <img src="photos/pic7.jpg" onclick="removeImage(this)" />
-        <img src="photos/pic8.jpg" onclick="removeImage(this)" />
-        <img src="photos/pic9.jpg" onclick="removeImage(this)" />
+        <img src="pic6.jpg" onclick="removeImage(this)" />
+        <img src="pic7.jpg" onclick="removeImage(this)" />
+        <img src="pic8.jpg" onclick="removeImage(this)" />
+        <img src="pic9.jpg" onclick="removeImage(this)" />
       </div>
 
       <button onclick="verify()">VERIFY ❤️</button>
     </div>
 
     <script>
+      // Hide photo when clicked
       function removeImage(img) {
         img.style.visibility = "hidden";
       }
 
+      // Check if all photos hidden
       function verify() {
         const images = document.querySelectorAll(".grid img");
         let allHidden = true;
@@ -47,6 +94,7 @@
         }
       }
 
+      // Floating hearts
       function createHeart() {
         const heart = document.createElement("div");
         heart.classList.add("heart");
